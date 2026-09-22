@@ -1,18 +1,31 @@
-# Publish the homepage on GitHub Pages
+# Publishing the homepage
 
-1. Unzip the ready-to-publish website ZIP.
-2. Put its **contents** into your GitHub repository. `index.html`, `.nojekyll`, `assets/`, `documents/`, and the images must be at the repository's top level, not inside an extra enclosing folder. On macOS, use Command–Shift–Period to show `.nojekyll` if it is hidden.
-3. In the repository, open **Settings → Pages**. Under **Build and deployment**, choose **Deploy from a branch**, then your branch (normally `main`) and **/(root)**. Save.
-4. When GitHub finishes publishing, use **Visit site** on that page.
+The public address is **https://inekras.github.io/**. `source/` is the editable project, and `dist/` is the sole deployment directory. The repository root is no longer a ready-made website. Use the exact local commands in the [repository README](https://github.com/inekras/inekras.github.io/blob/main/README.md).
 
-No npm installation, Cloudflare account, Sites account, database, or GitHub Actions build configuration is needed for these already-built files. Keep `.nojekyll`; it disables Jekyll processing.
+## One-time handoff
 
-The same ZIP works for a personal site (`https://USERNAME.github.io/`) and a project site (`https://USERNAME.github.io/REPOSITORY/`). All local asset links are relative.
+1. Review the `source-setup` changes and their local production preview. When ready, commit and push them and open a pull request to `main`.
+2. Wait for the **Pages / Build and check** pull-request check to pass. It does not call the Pages API and works while the repository still uses branch-based publishing.
+3. Immediately before merging, the repository owner should select **Settings → Pages → Build and deployment → Source: GitHub Actions**. Coordinate this switch with the merge because this change removes the old generated website from the root.
+4. Merge the reviewed pull request. The push to `main` builds, checks, and deploys the site. Check the **Pages** workflow in the Actions tab, then visit the homepage.
 
-The website will normally be publicly accessible. GitHub Pages does not inherit the private access restrictions of the original Sites preview. Only publish when ready for the homepage and bundled CV to be public.
+The setup changes alone do not perform these steps. The workflow does not enable Pages or change repository settings. No personal access token or repository secret is needed. GitHub documents the [publishing-source setting](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site) and [custom Pages workflows](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).
 
-The editable-source ZIP is a separate development copy, not something you must upload to publish. Its README explains how to edit Markdown and rebuild.
+## Normal updates
 
-The final GitHub address was not supplied, so no made-up canonical URL or old preview URL is embedded. The social-preview image is included; for reliable social sharing, regenerate with `SITE_URL` set to your final HTTPS homepage URL as explained in the source README. This is optional for the actual website and all its interactions to work.
+Edit source, run the production build and checks, and preview `dist/`. After review, merge into `main`. Do not copy generated files back into the repository root or upload a ZIP. The build fixes canonical and social-sharing URLs to `https://inekras.github.io/`; no `SITE_URL` setting is needed.
 
-Official instructions: https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site
+The [workflow](https://github.com/inekras/inekras.github.io/blob/main/.github/workflows/pages.yml) uses GitHub-hosted Linux runners and official GitHub actions:
+
+- Every pull request installs the locked npm dependencies, builds, and checks the exported site with read-only repository access. It never deploys.
+- A push to `main` performs the same steps, then uploads only `dist/` as the Pages artifact. Deployment depends on successful completion of that job.
+- Only the deployment job receives `pages: write` and `id-token: write`, using the built-in GitHub token and the `github-pages` environment. Other branches cannot deploy.
+- Build concurrency is scoped to each ref; a pull request cannot cancel a production run. Deployment jobs are serialized without cancelling a running deployment.
+
+The homepage, local CV, and other files in `source/public/` are public. Original Sites authentication and private preview access are not part of this static site.
+
+## Recovering from a bad update
+
+Revert the faulty content commit in a new pull request, run the same checks and preview, and merge the revert into `main`. For a merge commit, GitHub’s pull-request **Revert** action can prepare the reversal. Preserve the source-based build/deployment setup when selecting changes to revert. The next successful workflow republishes the restored source; no generated files need editing.
+
+If a build or check fails, inspect its Actions log and fix the source. The deploy job will be skipped and the last successful site stays published. If deployment fails after a successful build, check the Pages source setting and any `github-pages` environment restrictions, then rerun the failed workflow after correcting the cause.

@@ -1,36 +1,36 @@
 # Static export notes
 
-## What is preserved
+## Source and preservation
 
-- Approved content and layout from source revision `a9a50f871cca7a3a9bdfc44748b0d6e0f2d6bd3e`, including the latest thesis-publication wording and bold “email me!”.
-- Warm-white background, original CSS, Georgia/Palatino font choices, responsive portrait layout and rounded corners.
-- Centered name, textured gradient scrolling header, four section links, and “To top”. The export uses the original React header component, including section opening, deep links, focus management, history and reduced-motion behavior.
-- Native expandable Research, Teaching, Advising and Contact sections.
-- KaTeX formulas, including accessible MathML, pre-rendered into HTML. All needed KaTeX font files and CSS are local; no math CDN or server is required.
-- Portrait and existing social-sharing image as local files.
-- CV downloaded from the existing publicly accessible Google Drive link on 2026-09-21 and bundled as `documents/ilia-nekrasov-cv.pdf`; the visible CV link now opens that file.
-- Scholarly references, arXiv/DOI links, course links, email links and seminar link.
+`source/` is the authoritative editable project. The existing Vite/React static-export pipeline still renders `app/page.tsx`, compiles the original stylesheet, and bundles `app/scroll-header.tsx`. The migration does not change frameworks or redesign the homepage.
 
-## Server-dependent items, explicitly accounted for
+The imported source was compared with the generated website originally stored at the repository root. No newer homepage content was found in that root export. The portrait, sharing image, and CV matched the imported copies byte for byte. The original export notes identify source revision `a9a50f871cca7a3a9bdfc44748b0d6e0f2d6bd3e` as their provenance; this repository’s source and lockfile are the build inputs going forward.
 
-No user-facing homepage feature needs a backend. The original server-rendering step now runs only when generating these files, not when someone visits the website.
+The production rebuild was also compared before removing the root export: its HTML body, all 61 CSS/JavaScript/font assets, five license texts, CV, portrait, social image, and robots file were byte-identical. All 60 anchor destinations were unchanged. The deliberate metadata change adds the final public canonical URL and absolute social-image URLs.
 
-The original request-header-based metadata URL detection cannot run on GitHub Pages. It is replaced with static metadata and an optional build-time `SITE_URL`. Without that value, the export deliberately omits canonical/og:url and uses a relative local social image; some social crawlers need absolute URLs to show a card. The site itself works immediately without configuration.
+The preservation baseline includes:
 
-The original starter's ChatGPT authentication helpers, Cloudflare Worker image-optimization endpoint and database helper are not used by the approved homepage. They are not deployed. Their original source is retained in the separate editable source archive for completeness. No login, form, upload, analytics or database feature has been removed from the visible page.
+- Warm-white background, original CSS, Georgia/Palatino font choices, responsive portrait layout, and rounded corners.
+- Centered name, textured gradient scrolling header, Research/Teaching/Advising/Contact links, “To top”, section anchors, focus handling, history, and reduced-motion behavior.
+- Native expandable sections, thesis-publication wording, and bold “email me!”.
+- Pre-rendered KaTeX mathematics and accessible MathML, with local CSS and fonts.
+- Portrait, social-sharing image, CV, scholarly references, arXiv/DOI links, course links, email links, and seminar link.
+- The public homepage, image, document, section-anchor, and third-party-license paths. These notes and `PUBLISHING.md` also remain available at their existing public paths.
 
-The original Sites hosting access gate is platform functionality, not portable website code. A normal GitHub Pages publication is public; this export cannot preserve owner-only Sites access.
+Generated root HTML/assets are replaced by reproducible `dist/` output after comparison. Public images, the CV, and existing third-party license texts are retained under `source/public/`. Keep unique source material and documents there even when they are not currently linked from the homepage.
 
-## External links that remain external
+## Build inputs and output
 
-The Algebra Seminar remains a live Google Docs link so its schedule can keep changing. arXiv, journals, textbook publishers and university profiles remain links to their original hosts. Canvas/bCourses course pages may require university authentication; they cannot be made public or exported through this homepage. No authenticated course materials have been copied. Google Docs access also remains subject to its owner's sharing settings.
+All homepage build inputs live in this repository, including `source/package-lock.json`, Markdown, page components, styles, images, and `source/public/documents/ilia-nekrasov-cv.pdf`. The original CV snapshot was obtained on 2026-09-21; builds copy the local PDF and never download it. Replace that file to update the CV while preserving `/documents/ilia-nekrasov-cv.pdf`.
 
-There are no private or temporary preview URLs used to load the website's CSS, JavaScript, images, math fonts or CV. External destinations may still change or require login; preserving their links does not bypass their access controls.
+The build uses pinned Node/npm versions and locked dependencies; dependency installation requires access to the public npm registry. Once dependencies are installed, static export requires no network service, file elsewhere on the owner’s Mac, ChatGPT session, secret, environment file, or private preview URL. Canonical and social metadata use `https://inekras.github.io/`.
 
-## Editing and compatibility
+Only the repository-root `dist/` directory is published. It contains static HTML, CSS, JavaScript, fonts, public assets, third-party runtime licenses, and these publishing/export notes. Editable code, dependency caches, credentials, Git history, and original hosting configuration are excluded. See the [README](https://github.com/inekras/inekras.github.io/blob/main/README.md) for exact build/check/preview commands and [PUBLISHING.md](https://github.com/inekras/inekras.github.io/blob/main/PUBLISHING.md) for the workflow.
 
-All text/formulas and native expandable sections work without JavaScript. JavaScript is needed for the scrolling-header transformations and enhanced navigation. These use the same modern browser features as the approved version.
+## Compatibility and external services
 
-Georgia and Palatino are system-font choices, as on the original website; the same fallback fonts apply if a visitor does not have them installed. Proprietary system font files are not redistributed.
+Text, formulas, and native expandable sections work without JavaScript. The scrolling-header transformations and enhanced navigation use JavaScript. Georgia and Palatino remain system-font choices with the existing fallbacks; proprietary system fonts are not redistributed.
 
-The static ZIP contains only deployable files and these instructions. The separate source ZIP excludes credentials, environment files, dependency caches, Git history and private preview state. Third-party runtime licenses accompany the static assets.
+The original starter’s ChatGPT authentication helpers, Cloudflare image endpoint, and database helper are retained as source references and are not deployed. No visible homepage feature requires them. Request-time metadata detection is replaced by static production metadata. The original Sites access gate is hosting functionality; GitHub Pages publishes this homepage publicly.
+
+The Algebra Seminar remains a Google Docs link so its schedule can change independently. Journals, arXiv, publishers, university profiles, Canvas, and bCourses remain external links. Their availability and access permissions remain with their owners; no authenticated course materials are bundled.
