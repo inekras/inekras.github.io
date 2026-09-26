@@ -86,6 +86,8 @@ try {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Ilia Nekrasov | Mathematician</title>
+  <link rel="icon" href="./favicon.ico" sizes="16x16 32x32 48x48">
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" sizes="any">
   <meta name="description" content="Academic homepage of Ilia Nekrasov: research, publications, teaching, advising, and contact information.">
   <meta name="application-name" content="Ilia Nekrasov / Homepage">
   <meta name="author" content="Ilia Nekrasov">

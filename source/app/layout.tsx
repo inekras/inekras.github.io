@@ -21,6 +21,12 @@ export async function generateMetadata(): Promise<Metadata> {
     title: "Ilia Nekrasov | Mathematician",
     description,
     applicationName: "Ilia Nekrasov / Homepage",
+    icons: {
+      icon: [
+        { url: "/favicon.ico", sizes: "16x16 32x32 48x48" },
+        { url: "/favicon.svg", type: "image/svg+xml", sizes: "any" },
+      ],
+    },
     authors: [{ name: "Ilia Nekrasov" }],
     creator: "Ilia Nekrasov",
     keywords: [
