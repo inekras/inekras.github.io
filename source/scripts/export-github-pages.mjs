@@ -94,6 +94,7 @@ try {
   <meta name="creator" content="Ilia Nekrasov">
   <meta name="keywords" content="Ilia Nekrasov, mathematics, tensor categories, model theory, algebra">
   <meta name="robots" content="index, follow">
+  <meta name="google-site-verification" content="Q2yYpxQT3oJoaIwwX8ZHVnTOu2qBmcvrdd3z62gExrQ" />
   <meta property="og:type" content="website">
   <meta property="og:locale" content="en_US">
   <meta property="og:title" content="Ilia Nekrasov | Mathematician">
