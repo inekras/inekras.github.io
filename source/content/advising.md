@@ -1,4 +1,4 @@
-> Note for students: If you are interested in a reading course or a similar independent study, **email me!** Working in a small group—for example, with a classmate—is often even more productive.
+> **Note for students:** If you are interested in a reading course or a similar independent study, **email me!** Working in a small group—for example, with a classmate—is often even more productive.
 
 ## Reading Courses
 
@@ -30,4 +30,4 @@ by Ali Ziyad Lone.
 
 by [Nikita Elizarov](https://ekvv.uni-bielefeld.de/pers_publ/publ/PersonDetail.jsp?personId=423321503&lang=en), Universität Bielefeld. The thesis led to a [published paper](https://www.mathnet.ru/php/archive.phtml?wshow=paper&jrnid=cheb&paperid=1024&option_lang=eng).
 
-Other advising and mentoring activities can be found in my CV.
+Other advising and mentoring activities can be found in my [CV](./documents/ilia-nekrasov-cv.pdf).

@@ -242,6 +242,7 @@ h1,
   font-size: 1rem;
   font-weight: 600;
   text-decoration: none;
+  white-space: nowrap;
 }
 
 .profile-links a:not(:last-child)::after {
@@ -251,10 +252,17 @@ h1,
   margin: 0 12px;
 }
 
-.current-note {
+.current-note,
+#advising .markdown-content > blockquote:first-child {
+  background: color-mix(in srgb, var(--blue) 12%, white);
+  border-radius: 12px;
   color: #4e514f;
   font-size: 1rem;
-  margin: 68px auto 0;
+  padding: 22px clamp(20px, 3vw, 30px);
+}
+
+.current-note {
+  margin: 27px auto 0;
   max-width: 850px;
 }
 
@@ -267,7 +275,7 @@ h1,
 }
 
 .sections {
-  margin-top: 64px;
+  margin-top: 27px;
   border-top: 1px solid var(--line);
 }
 
@@ -380,6 +388,10 @@ h1,
   margin: 0 0 16px;
 }
 
+#advising .markdown-content > p:last-child {
+  margin-left: 0;
+}
+
 .markdown-content em {
   color: var(--muted);
 }
@@ -437,6 +449,10 @@ h1,
 
   .portrait-frame {
     width: 100%;
+  }
+
+  .current-note {
+    margin-top: 0;
   }
 }
 

@@ -135,10 +135,10 @@ export default function Home() {
               <ExternalLink href="https://arxiv.org/search/?query=Ilia+Nekrasov&searchtype=author">
                 arXiv
               </ExternalLink>
-              <ExternalLink href="https://profiles.rice.edu/faculty/ilia-nekrasov">
-                Rice profile
-              </ExternalLink>
               <a href="mailto:ilia.nekrasov@rice.edu">Email</a>
+              <ExternalLink href="https://www.google.com/maps/search/?api=1&query=Herman%20Brown%20Hall%20for%20Mathematical%20Sciences%2C%20Rice%20University%2C%20Houston%2C%20TX">
+                Office: HBH444
+              </ExternalLink>
             </nav>
           </div>
         </section>
